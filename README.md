@@ -167,3 +167,52 @@ Explain how you would use Git to collaborate on a team project with other develo
 
 *   One common Git command you use often.
 *   One problem you’ve faced while using Git and how you solved it.
+
+**Solution:**
+
+A common and effective way to collaborate using Git is the **feature branching workflow**. This keeps the `main` branch stable by having developers create separate branches for each new feature or bugfix.
+
+Here’s a demonstration of creating a feature branch, making a commit, and merging it back into the `main` branch:
+
+```bash
+# Start on the main branch
+razaoul@trevor-HP-650-Notebook-PC:~/Documents/software_dev/techleap-apprenticeship-test$ git branch -v
+* main 91cd24d Added Q1 - Q5 solutions
+
+# Create a new branch for a new feature and switch to it
+razaoul@trevor-HP-650-Notebook-PC:~/Documents/software_dev/techleap-apprenticeship-test$ git checkout -b second
+Switched to a new branch 'second'
+
+# Add a new file and commit the changes to the new branch
+razaoul@trevor-HP-650-Notebook-PC:~/Documents/software_dev/techleap-apprenticeship-test$ git add "Apprenticeship Entry Test.md"
+razaoul@trevor-HP-650-Notebook-PC:~/Documents/software_dev/techleap-apprenticeship-test$ git commit -m "Added apprenticeship test questions"
+[second 6bb9067] Added apprenticeship test questions
+ 1 file changed, 59 insertions(+)
+ create mode 100644 "Apprenticeship Entry Test.md"
+
+# Switch back to the main branch
+razaoul@trevor-HP-650-Notebook-PC:~/Documents/software_dev/techleap-apprenticeship-test$ git checkout main
+Switched to branch 'main'
+
+# Merge the feature branch into main
+razaoul@trevor-HP-650-Notebook-PC:~/Documents/software_dev/techleap-apprenticeship-test$ git merge second
+Updating 91cd24d..6bb9067
+Fast-forward
+ "Apprenticeship Entry Test.md" | 59 +++++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 "Apprenticeship Entry Test.md"
+```
+
+**1. Common Git Command**
+
+A command I use constantly is `git checkout -b <branch-name>`. It's a powerful shortcut that creates a new branch and immediately switches to it, allowing me to quickly start working on a new task without affecting the main codebase.
+
+**2. Problem Faced: Merge Conflicts**
+
+A common problem is a **merge conflict**, which happens when Git can’t automatically combine changes from two different branches because they affect the same lines in the same file.
+
+*   **How I solve it:**
+    1.  When Git indicates a merge conflict, I open the conflicted file.
+    2.  Git marks the conflicting sections with `<<<<<<<`, `=======`, and `>>>>>>>`. I manually edit the file to resolve the differences, keeping the code I want and removing the conflict markers.
+    3.  Once the file is corrected, I use `git add <filename>` to stage the resolved file.
+    4.  Finally, I run `git commit` to complete the merge.
